@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/alert/alert"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0f1c34",
+    "navigationBarTitleText": "调味品营销数据",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+    "van-card": "/vant/card/index",
+    "van-button": "/vant/button/index",
+    "van-empty": "/vant/empty/index",
+    "van-cell": "/vant/cell/index",
+    "van-cell-group": "/vant/cell-group/index",
+    "van-checkbox": "/vant/checkbox/index",
+    "van-popup": "/vant/popup/index",
+    "van-toast": "/vant/toast/index",
+    "ec-canvas": "/ec-canvas/ec-canvas"
+  }
+}

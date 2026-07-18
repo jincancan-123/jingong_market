@@ -1,0 +1,11 @@
+page {
+  background: #0f1c34;
+  color: #fff;
+  padding: 20rpx;
+}
+.title {
+  font-size: 36rpx;
+  text-align: center;
+  margin-bottom: 30rpx;
+  color: #4fc3f7;
+}

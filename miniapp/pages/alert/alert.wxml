@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="title">异常预警列表</view>
+
+  <van-cell-group wx:if="{{alertList.length > 0}}">
+    <van-cell 
+      wx:for="{{alertList}}" 
+      wx:key="brand"
+      title="{{item.brand}}"
+      label="风险等级：{{item.level}}"
+    >
+      <view slot="desc">{{item.tip}}</view>
+    </van-cell>
+  </van-cell-group>
+
+  <van-empty description="暂无价格/舆情异常预警" wx:else />
+</view>

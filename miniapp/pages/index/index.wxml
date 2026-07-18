@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="title">调味品营销数据</view>
+
+  <view class="card-wrap">
+    <van-card title="商品总数">
+      <view slot="desc" class="num">{{homeData.total_product}}</view>
+    </van-card>
+    <van-card title="总GMV(元)">
+      <view slot="desc" class="num">{{homeData.total_gmv}}</view>
+    </van-card>
+  </view>
+
+  <view class="card-wrap">
+    <van-card title="总销量">
+      <view slot="desc" class="num">{{homeData.total_sales}}</view>
+    </van-card>
+    <van-card title="更新时间">
+      <view slot="desc" class="num">{{homeData.update_time}}</view>
+    </van-card>
+  </view>
+
+  <view class="brand-title">头部竞品品牌</view>
+  <view wx:for="{{homeData.top_brand}}" wx:key="brand" class="brand-item">
+    <text>{{item.brand}}：{{item.count}}款商品</text>
+  </view>
+
+  <!-- 新增图表区域 开始 -->
+  <view class="chart-box">
+    <view class="chart-title">销售数据可视化</view>
+    <!-- 饼图：平台销量占比 -->
+    <view class="chart-item">
+      <view class="sub-title">平台销量分布</view>
+      <ec-canvas id="pie" canvas-id="pie" ec="{{ pie }}"></ec-canvas>
+    </view>
+    <!-- 柱状图：价格区间统计 -->
+    <view class="chart-item">
+      <view class="sub-title">商品价格区间分布</view>
+      <ec-canvas id="bar" canvas-id="bar" ec="{{ bar }}"></ec-canvas>
+    </view>
+    <!-- 横向条形图：头部品牌商品数量 -->
+    <view class="chart-item">
+      <view class="sub-title">竞品品牌商品规模</view>
+      <ec-canvas id="barH" canvas-id="barH" ec="{{ barH }}"></ec-canvas>
+    </view>
+  </view>
+  <!-- 新增图表区域 结束 -->
+
+  <van-button class="jump-btn" type="primary" bindtap="goAlert">查看预警消息</van-button>
+</view>

@@ -1,0 +1,30 @@
+/**app.wxss**/
+page {
+  /* Vant深色主题变量 */
+  --van-primary-color: #4fc3f7;
+  --van-background-color: #0f1c34;
+  --van-text-color: #ffffff;
+  --van-cell-background-color: rgba(255,255,255,0.05);
+  --van-cell-text-color: #fff;
+  --van-empty-text-color: #b0bec5;
+  background: #0f1c34;
+  color: #fff;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+/* 全局标题通用样式，首页、预警页共用 */
+.title {
+  font-size: 36rpx;
+  text-align: center;
+  margin-bottom: 30rpx;
+  color: #4fc3f7;
+}
