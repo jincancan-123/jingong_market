@@ -17,7 +17,7 @@ start_scheduler()
 
 app = FastAPI(title="jinggong_market backend", version="0.1.0")
 
-# 【新增】允许前端跨域调用，大屏页面必配
+# 【新增】允许前端跨域调用
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

@@ -1,0 +1,51 @@
+page {
+  background: #f5f7fa;
+}
+.container {
+  padding: 24rpx;
+}
+.title {
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.label {
+  color: #666;
+  font-size: 24rpx;
+}
+.value {
+  font-weight: 600;
+  margin-top: 6rpx;
+}
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  margin-bottom: 20rpx;
+}
+.item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+}
+.meta {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 6rpx;
+}
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 20rpx 0;
+}

@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="title">商品浏览</view>
+  <view class="filter-panel">
+    <input class="input" placeholder="平台筛选" bindinput="onPlatformInput" value="{{platform}}" />
+    <input class="input" placeholder="品牌筛选" bindinput="onBrandInput" value="{{brand}}" />
+    <picker bindchange="onPriceChange" value="{{price}}" range="{{['', '低价', '中端', '高端']}}">
+      <view class="picker">价格区间：{{price || '全部'}}</view>
+    </picker>
+    <button type="primary" bindtap="search">筛选</button>
+  </view>
+
+  <view wx:if="{{list.length > 0}}" class="list">
+    <view wx:for="{{list}}" wx:key="id" class="card" bindtap="goDetail" data-id="{{item.id}}">
+      <view class="card-title">{{item.title}}</view>
+      <view class="meta">平台：{{item.platform}}｜品牌：{{item.brand || '未知'}}</view>
+      <view class="meta">价格：{{item.price}}元｜销量：{{item.sales_volume}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty">暂无商品数据</view>
+
+  <view class="pager">
+    <button size="mini" bindtap="prevPage">上一页</button>
+    <text>第 {{page}} 页</text>
+    <button size="mini" bindtap="nextPage">下一页</button>
+  </view>
+</view>

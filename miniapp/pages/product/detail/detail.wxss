@@ -1,0 +1,26 @@
+page {
+  background: #f5f7fa;
+}
+.container {
+  padding: 24rpx;
+}
+.title {
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+.info-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+.row {
+  margin-bottom: 12rpx;
+}
+.chart-box {
+  height: 420rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+}

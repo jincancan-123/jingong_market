@@ -3,9 +3,62 @@ page {
   color: #fff;
   padding: 20rpx;
 }
+.container {
+  padding-bottom: 40rpx;
+}
 .title {
   font-size: 36rpx;
   text-align: center;
   margin-bottom: 30rpx;
   color: #4fc3f7;
+}
+.alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+.alert-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+.alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+.alert-brand {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.alert-level {
+  color: #ffb703;
+  font-size: 24rpx;
+}
+.alert-type,
+.alert-desc,
+.alert-suggest,
+.alert-time {
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  color: #dfe7f5;
+}
+.subscribe-btn {
+  margin-top: 16rpx;
+}
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400rpx;
+  text-align: center;
+}
+.empty-title {
+  font-size: 32rpx;
+  margin-bottom: 12rpx;
+}
+.empty-desc {
+  color: #cfd8e3;
 }

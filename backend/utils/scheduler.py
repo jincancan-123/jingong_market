@@ -30,7 +30,7 @@ def scheduled_competitor_crawl():
 # 启动调度器
 def start_scheduler():
     # 服务启动时立即执行一次采集，快速验证效果
-    scheduled_product_crawl()
+    # scheduled_product_crawl()
     # scheduled_competitor_crawl()
 
     # 每天凌晨2点执行全平台商品采集

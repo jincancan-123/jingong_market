@@ -1,16 +1,24 @@
 <view class="container">
   <view class="title">异常预警列表</view>
 
-  <van-cell-group wx:if="{{alertList.length > 0}}">
-    <van-cell 
-      wx:for="{{alertList}}" 
-      wx:key="brand"
-      title="{{item.brand}}"
-      label="风险等级：{{item.level}}"
-    >
-      <view slot="desc">{{item.tip}}</view>
-    </van-cell>
-  </van-cell-group>
+  <view wx:if="{{alertList.length > 0}}" class="alert-list">
+    <view wx:for="{{alertList}}" wx:key="id" class="alert-card">
+      <view class="alert-header">
+        <view class="alert-brand">{{item.brand}}</view>
+        <view class="alert-level">{{item.risk_level}}</view>
+      </view>
+      <view class="alert-type">{{item.alert_type}}</view>
+      <view class="alert-desc">{{item.desc}}</view>
+      <view class="alert-suggest">建议：{{item.suggest}}</view>
+      <view class="alert-time">{{item.alert_time}}</view>
+      <button size="mini" class="subscribe-btn" bindtap="toggleSubscribe" data-category="{{item.brand}}">
+        {{item.subscribed ? '取消订阅' : '订阅品类'}}
+      </button>
+    </view>
+  </view>
 
-  <van-empty description="暂无价格/舆情异常预警" wx:else />
+  <view wx:else class="empty-state">
+    <view class="empty-title">暂无价格/舆情异常预警</view>
+    <view class="empty-desc">当前暂无波动数据，请稍后再试。</view>
+  </view>
 </view>

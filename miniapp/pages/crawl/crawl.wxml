@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="title">采集任务</view>
+  <view class="panel">
+    <input class="input" placeholder="请输入采集关键词" bindinput="onKeywordInput" value="{{keyword}}" />
+    <button type="primary" bindtap="runCrawl">启动爬虫</button>
+  </view>
+
+  <view class="section-title">最近任务日志</view>
+  <view wx:if="{{logs.length > 0}}" class="log-list">
+    <view wx:for="{{logs}}" wx:key="id" class="log-item">
+      <view class="log-top">
+        <text>{{item.platform}}</text>
+        <text class="status">{{item.status}}</text>
+      </view>
+      <view class="log-meta">总数：{{item.total}} / 成功：{{item.success}}</view>
+      <view class="log-meta">时间：{{item.create_time}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty">暂无任务记录</view>
+
+  <view class="section-title">近7天趋势</view>
+  <view class="chart-box">
+    <ec-canvas id="trend" canvas-id="trend" ec="{{ trendChart }}"></ec-canvas>
+  </view>
+</view>

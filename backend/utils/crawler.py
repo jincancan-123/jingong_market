@@ -60,8 +60,8 @@ def real_platform_products(platform_name: str, keyword: str = "酱油") -> list:
             "item_selector": "article.product_pod"
         },
         "京东": {
-            "target_url": "https://search.jd.com/Search?keyword=酱油&enc=utf-8",  # 生产环境可替换为对应电商榜单地址
-            "item_selector": "li.gl-item"
+            "target_url": "https://books.toscrape.com/catalogue/category/books_1/index.html",  # 生产环境可替换为对应电商榜单地址
+            "item_selector": "article.product_pod"
         },
         "拼多多": {
             "target_url": "https://books.toscrape.com/catalogue/category/books_1/index.html",  # 生产环境可替换为对应电商榜单地址
@@ -90,81 +90,73 @@ def real_platform_products(platform_name: str, keyword: str = "酱油") -> list:
     base_url = "https://books.toscrape.com/catalogue/"
 
     def sync_crawl_logic():
-      with sync_playwright() as p:
-        # 1. 可视化浏览器+反爬隐藏
-        browser = p.chromium.launch(
-            headless=False,
-            args=["--disable-blink-features=AutomationControlled", "--no-sandbox"],
-            ignore_default_args=["--enable-automation"]
-        )
-        context = browser.new_context(
-            user_agent=BASE_CRAWL_HEADERS["User-Agent"],
-            locale="zh-CN"
-        )
-        # 抹除自动化检测特征
-        context.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-        page = context.new_page()
-        page.set_default_navigation_timeout(35000)
-        print(f"[real_platform_products] platform={platform_name}, url={search_url}")
-        # 2. 放宽页面等待条件
-        page.goto(search_url, wait_until="domcontentloaded")
-        time.sleep(random.uniform(2, 4))
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            context = browser.new_context(
+                user_agent=BASE_CRAWL_HEADERS["User-Agent"],
+                locale="zh-CN"
+            )
+            page = context.new_page()
+            page.set_default_navigation_timeout(20000)
+            print(f"[real_platform_products] platform={platform_name}, url={search_url}")
+            page.goto(search_url, wait_until="networkidle")
+            time.sleep(random.uniform(2, 4))
 
-        for _ in range(random.randint(2, 4)):
-            page.mouse.wheel(0, random.randint(300, 700))
-            time.sleep(random.uniform(1, 2))
+            for _ in range(random.randint(2, 4)):
+                page.mouse.wheel(0, random.randint(300, 700))
+                time.sleep(random.uniform(1, 2))
 
-        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-        time.sleep(random.uniform(2, 3))
+            page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+            time.sleep(random.uniform(2, 3))
 
-        product_nodes = page.query_selector_all(item_selector)
-        print(f"查询商品节点完成，匹配到卡片数量：{len(product_nodes)}")
-        if not product_nodes:
-            print("【警告】未找到商品列表节点，继续返回空商品列表")
+            product_nodes = page.query_selector_all(item_selector)
+            print(f"查询商品节点完成，匹配到卡片数量：{len(product_nodes)}")
+            if not product_nodes:
+                print("【警告】未找到商品列表节点，继续返回空商品列表")
 
-        products = []
-        # 3. 替换京东DOM选择器
-        for node in product_nodes:
-            title_link = node.query_selector("div.p-name a")
-            price_node = node.query_selector("div.p-price strong")
+            products = []
+            for node in product_nodes:
+                title_link = node.query_selector("h3 a")
+                price_node = node.query_selector("p.price_color")
 
-            title = title_link.get_attribute("title").strip() if title_link else f"{platform_name}{keyword}商品"
-            href = title_link.get_attribute("href") if title_link else None
-            link = None
-            if href:
-                if href.startswith("http"):
-                    link = href
-                elif href.startswith("../"):
-                    link = base_url + href.replace("../", "")
-                else:
-                    link = base_url + href
+                title = title_link.get_attribute("title").strip() if title_link else f"{platform_name}{keyword}商品"
+                href = title_link.get_attribute("href") if title_link else None
+                link = None
+                if href:
+                    if href.startswith("http"):
+                        link = href
+                    elif href.startswith("../"):
+                        link = base_url + href.replace("../", "")
+                    else:
+                        link = base_url + href
 
-            price_text = price_node.inner_text() if price_node else "0"
-            price = 0.0
-            try:
-                price = float("".join(ch for ch in price_text if ch.isdigit() or ch == "."))
-            except ValueError:
-                price = round(random.uniform(9.9, 99.9), 2)
+                price_text = price_node.inner_text() if price_node else "£0"
+                price = 0.0
+                try:
+                    price = float("".join(ch for ch in price_text if ch.isdigit() or ch == "."))
+                except ValueError:
+                    price = round(random.uniform(9.9, 99.9), 2)
 
-            products.append({
-                "title": title,
-                "price": round(price, 2),
-                "platform": platform_name,
-                "link": link or f"https://{platform_name}.com/goods/{len(products) + 1}",
-                "stock": random.randint(10, 500),
-                "sales_volume": random.randint(100, 10000),
-                "review_count": random.randint(10, 2000)
-            })
+                products.append({
+                    "title": title,
+                    "price": round(price, 2),
+                    "platform": platform_name,
+                    "link": link or f"https://{platform_name}.com/goods/{len(products) + 1}",
+                    "stock": random.randint(10, 500),
+                    "sales_volume": random.randint(100, 10000),
+                    "review_count": random.randint(10, 2000)
+                })
 
-        if keyword:
-            filtered = [item for item in products if keyword.lower() in item["title"].lower()]
-            if filtered:
-                products = filtered
+            # if keyword:
+            #     filtered = [item for item in products if keyword.lower() in item["title"].lower()]
+            #     # 有匹配商品才过滤，无匹配保留全部图书，不置空列表触发报错
+            #     if filtered:
+            #         products = filtered
 
-        page_title = page.title()
-        print(f"[real_platform_products] page title: {page_title}, matched books: {len(products)}")
+            page_title = page.title()
+            print(f"[real_platform_products] page title: {page_title}, matched books: {len(products)}")
 
-        return products
+            return products
 
     try:
         with ThreadPoolExecutor(max_workers=1) as executor:

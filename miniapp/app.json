@@ -1,13 +1,37 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/alert/alert"
+    "pages/alert/alert",
+    "pages/login/login",
+    "pages/crawl/crawl",
+    "pages/product/product",
+    "pages/product/detail/detail",
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0f1c34",
     "navigationBarTitleText": "调味品营销数据",
     "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#0f1c34",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/crawl/crawl",
+        "text": "采集"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
   },
   "usingComponents": {
     "van-card": "/vant/card/index",

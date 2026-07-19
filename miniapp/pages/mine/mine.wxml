@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="title">个人中心</view>
+  <view class="card">
+    <view class="label">当前用户</view>
+    <view class="value">{{userName}}</view>
+  </view>
+
+  <view class="section-title">我的爬虫任务</view>
+  <view wx:if="{{crawlLogs.length > 0}}" class="list">
+    <view wx:for="{{crawlLogs}}" wx:key="id" class="item">
+      <view>{{item.platform}}</view>
+      <view class="meta">{{item.status}}｜{{item.success}} / {{item.total}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty">暂无任务记录</view>
+
+  <view class="section-title">我的预警订阅</view>
+  <view wx:if="{{alerts.length > 0}}" class="list">
+    <view wx:for="{{alerts}}" wx:key="id" class="item">
+      <view>{{item.brand}}</view>
+      <view class="meta">{{item.alert_type}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty">暂无订阅</view>
+
+  <view class="section-title">历史报表</view>
+  <view class="card">
+    <view class="label">今日摘要</view>
+    <view class="value">总商品：{{report.summary.total_product || 0}}｜总销量：{{report.summary.total_sales || 0}}</view>
+  </view>
+
+  <button type="warn" bindtap="logout">退出登录</button>
+</view>

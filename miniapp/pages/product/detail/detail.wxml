@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="title">商品详情</view>
+  <view class="info-card">
+    <view class="row">名称：{{product.title}}</view>
+    <view class="row">平台：{{product.platform}}</view>
+    <view class="row">价格：{{product.price}}元</view>
+    <view class="row">销量：{{product.sales_volume}}</view>
+    <view class="row">品牌：{{product.brand || '未知'}}</view>
+    <view class="row">库存：{{product.stock}}</view>
+  </view>
+  <view class="chart-box">
+    <ec-canvas id="detailChart" canvas-id="detailChart" ec="{{ chart }}"></ec-canvas>
+  </view>
+</view>
