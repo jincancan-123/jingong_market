@@ -35,6 +35,7 @@ def start_competitor_crawl(
     db: Session = Depends(get_db)
 ):
     result = crawl_competitor_products(db, brand_keywords, platform.value)
+    return {"msg": "竞品采集完成", "data": result}
 
 # 3. 舆情关键词采集接口
 @router.post("/opinion")

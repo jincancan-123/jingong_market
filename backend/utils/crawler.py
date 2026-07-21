@@ -224,7 +224,8 @@ def crawl_competitor_products(db: Session, brand_keywords: List[str], platform: 
         "brand_keywords": brand_keywords,
         "total": total,
         "success": success,
-        "status": status
+        "status": status,
+        "log_id": log_record.id,
     }
 
 # -------------------------- 3. 舆情关键词抓取 --------------------------

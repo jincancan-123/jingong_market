@@ -1,0 +1,27 @@
+<view class="chatbi-page">
+  <view class="chat-header">自然语言查数</view>
+
+  <scroll-view id="chat-list" class="chat-list" scroll-y="true" scroll-top="999999">
+    <view wx:for="{{messages}}" wx:key="index" class="message-row {{item.role === 'user' ? 'user-row' : 'assistant-row'}}">
+      <view class="avatar">{{item.role === 'user' ? '我' : 'AI'}}</view>
+      <view class="bubble">{{item.content}}</view>
+    </view>
+
+    <view wx:if="{{loading}}" class="message-row assistant-row">
+      <view class="avatar">AI</view>
+      <view class="bubble typing">分析中...</view>
+    </view>
+  </scroll-view>
+
+  <view class="input-bar">
+    <textarea
+      class="input-box"
+      value="{{inputValue}}"
+      placeholder="请输入你的查询问题"
+      auto-height
+      bindinput="onInput"
+      bindconfirm="sendMessage"
+    />
+    <button class="send-btn" type="primary" bindtap="sendMessage">发送</button>
+  </view>
+</view>

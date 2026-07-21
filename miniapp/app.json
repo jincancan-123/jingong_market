@@ -6,7 +6,8 @@
     "pages/crawl/crawl",
     "pages/product/product",
     "pages/product/detail/detail",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/chatbi/chatbi"
   ],
   "window": {
     "backgroundTextStyle": "light",

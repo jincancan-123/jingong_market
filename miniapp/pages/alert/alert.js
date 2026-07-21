@@ -17,7 +17,10 @@ Page({
 
     request("/miniapp/alert/list", "GET")
       .then((res) => {
-        const items = res && res.data && res.data.alert_items ? res.data.alert_items : [];
+        const payload = res && res.data ? res.data : {};
+        const items = Array.isArray(payload.alert_items)
+          ? payload.alert_items
+          : (Array.isArray(payload) ? payload : []);
         this.setData({
           alertList: items
         });

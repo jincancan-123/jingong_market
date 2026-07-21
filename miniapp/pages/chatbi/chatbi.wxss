@@ -1,0 +1,97 @@
+.chatbi-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f5f7fb;
+}
+
+.chat-header {
+  padding: 24rpx 32rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  background: #ffffff;
+  border-bottom: 1rpx solid #e8edf3;
+}
+
+.chat-list {
+  flex: 1;
+  padding: 24rpx 24rpx 140rpx;
+}
+
+.message-row {
+  display: flex;
+  margin-bottom: 24rpx;
+  align-items: flex-start;
+}
+
+.user-row {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: #4f8cff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  flex-shrink: 0;
+  margin: 0 12rpx;
+}
+
+.assistant-row .avatar {
+  background: #16b777;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 20rpx 24rpx;
+  border-radius: 24rpx;
+  background: #ffffff;
+  color: #333;
+  font-size: 28rpx;
+  line-height: 1.6;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  white-space: pre-wrap;
+}
+
+.user-row .bubble {
+  background: #4f8cff;
+  color: #fff;
+}
+
+.typing {
+  color: #8894a3;
+}
+
+.input-bar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 20rpx 24rpx 28rpx;
+  background: #ffffff;
+  border-top: 1rpx solid #e8edf3;
+}
+
+.input-box {
+  flex: 1;
+  min-height: 80rpx;
+  max-height: 220rpx;
+  padding: 18rpx 20rpx;
+  border: 1rpx solid #dfe7f2;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  background: #f8fafc;
+}
+
+.send-btn {
+  margin-left: 16rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  min-width: 140rpx;
+  font-size: 28rpx;
+}

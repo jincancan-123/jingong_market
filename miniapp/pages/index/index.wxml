@@ -46,4 +46,5 @@
   <!-- 新增图表区域 结束 -->
 
   <van-button class="jump-btn" type="primary" bindtap="goAlert">查看预警消息</van-button>
+  <van-button class="jump-btn" type="primary" bindtap="goChatBI">自然语言查数</van-button>
 </view>

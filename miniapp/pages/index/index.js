@@ -52,6 +52,12 @@ Page({
     });
   },
 
+  goChatBI() {
+    wx.navigateTo({
+      url: "/pages/chatbi/chatbi"
+    });
+  },
+
   // 饼图：平台销量分布
   initPieChart(canvas, width, height, dpr) {
     const chart = echarts.init(canvas, null, { width, height, devicePixelRatio: dpr });

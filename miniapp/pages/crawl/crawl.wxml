@@ -1,25 +1,32 @@
 <view class="container">
   <view class="title">采集任务</view>
+
   <view class="panel">
+    <input class="input" placeholder="请输入平台（如天猫）" bindinput="onPlatformInput" value="{{platform}}" />
     <input class="input" placeholder="请输入采集关键词" bindinput="onKeywordInput" value="{{keyword}}" />
-    <button type="primary" bindtap="runCrawl">启动爬虫</button>
+    <button type="primary" bindtap="runCrawl">启动商品爬虫</button>
+  </view>
+
+  <view class="panel">
+    <input class="input" placeholder="请输入品牌关键词，多个用逗号分隔" bindinput="onBrandInput" value="{{brandKeywords}}" />
+    <button type="warn" bindtap="runCompetitor">启动竞品监控</button>
+  </view>
+
+  <view class="panel">
+    <input class="input" placeholder="请输入舆情热词，多个用逗号分隔" bindinput="onHotInput" value="{{hotKeywords}}" />
+    <button type="default" bindtap="runOpinion">启动舆情采集</button>
   </view>
 
   <view class="section-title">最近任务日志</view>
   <view wx:if="{{logs.length > 0}}" class="log-list">
     <view wx:for="{{logs}}" wx:key="id" class="log-item">
       <view class="log-top">
-        <text>{{item.platform}}</text>
-        <text class="status">{{item.status}}</text>
+        <text>{{item.target_platform || item.platform || '未知平台'}}</text>
+        <text class="status">{{item.status || '未知'}}</text>
       </view>
-      <view class="log-meta">总数：{{item.total}} / 成功：{{item.success}}</view>
-      <view class="log-meta">时间：{{item.create_time}}</view>
+      <view class="log-meta">总数：{{item.total_num || item.total || 0}} / 成功：{{item.success_num || item.success || 0}}</view>
+      <view class="log-meta">时间：{{item.crawl_time || item.create_time || '暂无'}}</view>
     </view>
   </view>
   <view wx:else class="empty">暂无任务记录</view>
-
-  <view class="section-title">近7天趋势</view>
-  <view class="chart-box">
-    <ec-canvas id="trend" canvas-id="trend" ec="{{ trendChart }}"></ec-canvas>
-  </view>
 </view>

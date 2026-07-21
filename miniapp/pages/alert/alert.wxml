@@ -9,6 +9,7 @@
       </view>
       <view class="alert-type">{{item.alert_type}}</view>
       <view class="alert-desc">{{item.desc}}</view>
+      <view wx:if="{{item.data_ai_analysis}}" class="alert-analysis">AI归因：{{item.data_ai_analysis}}</view>
       <view class="alert-suggest">建议：{{item.suggest}}</view>
       <view class="alert-time">{{item.alert_time}}</view>
       <button size="mini" class="subscribe-btn" bindtap="toggleSubscribe" data-category="{{item.brand}}">

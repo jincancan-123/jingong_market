@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="title">每日营销日报</view>
+  <view class="report-card">
+    <view class="report-summary">{{reportData.summary && reportData.summary.top_platform ? ('主导平台：' + reportData.summary.top_platform) : '主导平台：暂无'}}</view>
+    <view class="report-summary">总商品：{{reportData.summary && reportData.summary.total_product ? reportData.summary.total_product : 0}}</view>
+    <view class="report-summary">总销量：{{reportData.summary && reportData.summary.total_sales ? reportData.summary.total_sales : 0}}</view>
+    <view class="report-summary">总GMV：{{reportData.summary && reportData.summary.total_gmv ? reportData.summary.total_gmv : 0}}</view>
+  </view>
+
+  <view wx:if="{{reportData.global_data_analysis}}" class="report-card">
+    <view class="section-title">大盘AI分析</view>
+    <view class="report-content">{{reportData.global_data_analysis}}</view>
+  </view>
+
+  <view wx:if="{{reportData.content}}" class="report-card">
+    <view class="section-title">报告内容</view>
+    <view class="report-content">{{reportData.content}}</view>
+  </view>
+</view>
